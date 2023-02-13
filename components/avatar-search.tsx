@@ -9,10 +9,11 @@ import { Avatars } from '@/database/entities/Avatars'
 import AvatarList from './avatar-list'
 import Loading from './loading'
 
-export default function AvatarSearch(props: { keyword?: string, result?: Avatars[] | null, onKeyword: (args: string) => any, onFocus: (args: any) => any, onBlur: (args: any) => any }) {
+export default function AvatarSearch(props: { keyword?: string, result?: Avatars[] | null }) {
     const router = useRouter()
     const searchParams = useSearchParams()
 
+    const previousKeyword = useRef<any>(props.keyword)
     const inputRef = useRef<HTMLInputElement>(null)
     const cancelSearch = useRef<Canceler | null>(null)
     const previousResult = useRef<any>(null)
@@ -20,31 +21,21 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
     const [result, setResult] = useState<Avatars[] | null>(props.result ?? null)
     const [loading, setLoading] = useState(false)
     const [keyword, setKeyword] = useState(props.keyword ?? null)
+    const [expandInput, setExpandInput] = useState(router.pathname === '/search')
 
     const onInput = (event: any) => {
         if (!event.target.value) {
-            if (router.isReady) {
-                if (router.query.keyword) {
-                    delete router.query.keyword
-                    router.push(
-                        {
-                            pathname: router.pathname,
-                            query: router.query
-                        }
-                    )
-                }
-            }
-        } else {
-            onInputDebounce(event)
+            setKeyword('')
         }
+        onInputDebounce(event)
     }
 
     const onInputDebounce = debounce(720, (event) => {
         if (router.isReady) {
-            if (event.target.value) {
-                router.query.keyword = event.target.value
-            } else {
+            if (!event.target.value) {
                 delete router.query.keyword
+            } else {
+                router.query.keyword = event.target.value
             }
             router.push(
                 {
@@ -52,29 +43,36 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
                     query: router.query
                 },
                 undefined,
-                {}
+                { shallow: true }
             )
         }
     })
 
+
     useEffect(() => {
         if (router.isReady) {
-            const queryKeyword = searchParams.get('keyword')
-            if (inputRef.current !== null) {
-                if (queryKeyword) {
-                    inputRef.current.focus()
+            if (router.pathname === '/') {
+                setExpandInput(false)
+            } else if (router.pathname === '/search') {
+                setExpandInput(true)
+                const queryKeyword = searchParams.get('keyword')
+                setKeyword(queryKeyword ?? '')
+                if (inputRef.current !== null) {
+                    if (queryKeyword) {
+                        inputRef.current.focus()
+                    }
+                    inputRef.current.value = queryKeyword ?? ''
                 }
-                inputRef.current.value = queryKeyword ?? ''
-            }
-            setKeyword(queryKeyword ?? '')
-            if (props.onKeyword) {
-                props.onKeyword(queryKeyword ?? '')
             }
         }
-    }, [props, router.isReady, searchParams])
+    }, [router.isReady, router.pathname, searchParams])
 
-    useMemo(() => {
+    useEffect(() => {
         const search = async () => {
+            if (keyword && previousKeyword.current === keyword) {
+                return
+            }
+            previousKeyword.current = keyword
             if (cancelSearch.current) {
                 cancelSearch.current()
             }
@@ -107,6 +105,15 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
     useEffect(() => {
         const onShortcut = (event: any) => {
             if (event.keyCode === 27) { // esc
+                delete router.query.keyword
+                router.push(
+                    {
+                        pathname: router.pathname,
+                        query: router.query
+                    },
+                    undefined,
+                    { shallow: true }
+                )
                 if (inputRef.current !== null) {
                     if (document.activeElement === inputRef.current) {
                         if (!inputRef.current.value) {
@@ -115,23 +122,10 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
                     } else {
                         if (inputRef.current.value) {
                             inputRef.current.focus()
-                            inputRef.current.value = ''
-                            if (router.isReady) {
-                                if (router.query.keyword) {
-                                    delete router.query.keyword
-                                    router.push(
-                                        {
-                                            pathname: router.pathname,
-                                            query: router.query
-                                        }
-                                    )
-                                }
-                            }
                         }
                     }
-                    if (props.onKeyword) {
-                        props.onKeyword(inputRef.current.value)
-                    }
+                    inputRef.current.value = ''
+                    setKeyword('')
                 }
             } else if ((event.metaKey || event.ctrlKey) && event.keyCode === 75) {
                 event.preventDefault()
@@ -151,15 +145,16 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
     return (
         <>
             <Head>
-                {keyword && <title>{keyword} - Avatar Search - Unlight Management</title> }
+                {keyword && <title>{`${keyword} - Avatar Search - Unlight Management`}</title>}
+                {!keyword && <title>Avatar Search - Unlight Management</title>}
             </Head>
-            <div className="rel w:max-content m:auto text-align:center">
+            <div className="fixed rel w:max-content m:auto text-align:center pt:16">
                 <input
                     ref={inputRef}
-                    className="my:6 bg:gray-30 b:1|solid|gray outline:none p:5|12 ~width|300ms w:258@<xs w:360@<sm w:580 w:full:focus w:full:not(:placeholder-shown)"
+                    className={`my:6 bg:gray-30 b:1|solid|gray outline:none p:5|12 ~width|300ms w:258@<xs w:360@<sm w:580 ${expandInput ? 'w:full!' : ''}`}
                     onInput={onInput}
-                    onFocus={props.onFocus}
-                    onBlur={props.onBlur}
+                    onFocus={() => { if (router.pathname !== '/search') router.push('/search') }}
+                    onBlur={() => { if (!inputRef?.current?.value) router.push('/') }}
                     placeholder="Search player..."
                     type="search" />
 

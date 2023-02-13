@@ -21,8 +21,21 @@ export default async function handler(
                 partInventories: {
                     used: 1
                 }
+            },
+            select: {
+                id: true,
+                name: true,
+                gems: true,
+                level: true,
+                exp: true,
+                partInventories: {
+                    id: true,
+                    avatarPart: {
+                        name: true,
+                        image: true
+                    }
+                }
             }
         })
-    
     res.status(200).json(avatars)
 }
