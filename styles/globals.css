@@ -1,0 +1,390 @@
+@import '@master/normal.css';
+@import '@master/keyframes.css';
+@import '../public/fonts/bradley-gratis';
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: black;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        color-scheme: dark;
+    }
+}
+
+@keyframes petal3 {
+    0% {
+        opacity: 1;
+    }
+
+    16% {
+        opacity: .5;
+    }
+
+    40% {
+        opacity: .5;
+    }
+
+    51% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes petal5 {
+    0% {
+        opacity: 1;
+    }
+
+    6% {
+        opacity: 1;
+    }
+
+    20% {
+        opacity: .5;
+    }
+
+    47% {
+        opacity: .5;
+    }
+
+    57% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes petal7 {
+    0% {
+        opacity: 1;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    24% {
+        opacity: .5;
+    }
+
+    51% {
+        opacity: .5;
+    }
+
+    63% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes petal9 {
+    0% {
+        opacity: 1;
+    }
+
+    16% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: .5;
+    }
+
+    57% {
+        opacity: .5;
+    }
+
+    69% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes petal11 {
+    0% {
+        opacity: 1;
+    }
+
+    22% {
+        opacity: 1;
+    }
+
+    36% {
+        opacity: .5;
+    }
+
+    63% {
+        opacity: .5;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes petal13 {
+    0% {
+        opacity: 1;
+    }
+
+    28% {
+        opacity: 1;
+    }
+
+    42% {
+        opacity: .5;
+    }
+
+    69% {
+        opacity: .5;
+    }
+
+    81% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes petal15 {
+    0% {
+        opacity: 1;
+    }
+
+    34% {
+        opacity: 1;
+    }
+
+    48% {
+        opacity: .5;
+    }
+
+    75% {
+        opacity: .5;
+    }
+
+    87% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes petal17 {
+    0% {
+        opacity: 1;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    54% {
+        opacity: .5;
+    }
+
+    81% {
+        opacity: .5;
+    }
+
+    93% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes petal19 {
+    0% {
+        opacity: 1;
+    }
+
+    46% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: .5;
+    }
+
+    87% {
+        opacity: .5;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes bg-move {
+    0% {
+        background-position: -20vw center;
+        background-size: 125vw;
+    }
+    
+    100% {
+        background-position: 0 center;
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+@keyframes flashing {
+    0% {
+        opacity: .5;
+        background-size: 100%;
+    }
+
+    4% {
+        opacity: .7;
+    }
+
+    8% {
+        opacity: .45;
+    }
+
+    12% {
+        opacity: .65;
+        background-size: 70%;
+    }
+
+    16% {
+        opacity: .45;
+    }
+
+    20% {
+        opacity: .5;
+    }
+
+    24% {
+        opacity: .6;
+        background-size: 75%;
+    }
+
+    28% {
+        opacity: .55;
+        background-size: 100%;
+    }
+
+    32% {
+        opacity: .45;
+    }
+
+    36% {
+        opacity: .55;
+        background-size: 80%;
+    }
+
+    40% {
+        opacity: .4;
+    }
+
+    44% {
+        opacity: .6;
+        background-size: 70%;
+    }
+
+    48% {
+        opacity: .35;
+    }
+
+    52% {
+        opacity: .5;
+        background-size: 50%;
+    }
+
+    56% {
+        opacity: .70;
+    }
+
+    60% {
+        opacity: .5;
+        background-size: 70%;
+    }
+
+    64% {
+        opacity: .65;
+    }
+
+    68% {
+        opacity: .55;
+    }
+
+    72% {
+        opacity: .5;
+    }
+
+    76% {
+        opacity: .4;
+    }
+
+    80% {
+        opacity: .65;
+    }
+
+    84% {
+        opacity: .40;
+    }
+
+    88% {
+        opacity: .35;
+    }
+
+    92% {
+        opacity: .6;
+    }
+
+    96% {
+        opacity: .45;
+    }
+
+    100% {
+        opacity: .5;
+        background-size: 100%;
+    }
+}

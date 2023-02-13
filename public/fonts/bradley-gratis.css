@@ -1,0 +1,6 @@
+@font-face {
+    font-family: 'BradleyGratis';
+    src: url('Bradley Gratis.woff2') format('woff2'),
+        url("Bradley Gratis.woff") format("woff");
+    font-style: normal;
+}

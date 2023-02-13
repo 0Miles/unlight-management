@@ -1,0 +1,37 @@
+{
+    "name": "unlight-management",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "init submodule": "git submodule update --init",
+        "init assets": "node scripts/convert-unlight-images.js && shx cp -R unlight-images/public/sound public/unlight/"
+    },
+    "dependencies": {
+        "@master/css": "^1.37.2",
+        "@master/keyframes.css": "^2.0.0-beta.84",
+        "@master/normal.css": "^2.0.0-beta.84",
+        "@next/font": "13.1.6",
+        "@types/node": "18.11.18",
+        "@types/react": "18.0.27",
+        "@types/react-dom": "18.0.10",
+        "axios": "^1.3.2",
+        "eslint": "8.33.0",
+        "eslint-config-next": "13.1.6",
+        "jpexs-flash-decompiler": "^0.0.4",
+        "mysql": "^2.18.1",
+        "next": "13.1.6",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "throttle-debounce": "^5.0.0",
+        "typeorm": "^0.3.11",
+        "typescript": "4.9.5"
+    },
+    "devDependencies": {
+        "@types/throttle-debounce": "^5.0.0",
+        "shx": "^0.3.4"
+    }
+}
