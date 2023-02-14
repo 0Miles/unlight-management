@@ -18,6 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Head>
             <title>Unlight Management</title>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="preload" href="/unlight/images/data/title/event_title.swf/2.svg" as="image" />
         </Head>
         {getLayout(<Component {...pageProps} />)}
         <div className={`${loaded ? '@fade|1s|both|ease' : ''}`} style={{ position: 'fixed', top: '0', left: '0', background: 'black', height: '100vh', width: '100vw'}}></div>

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
@@ -21,39 +21,41 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
     const [result, setResult] = useState<Avatars[] | null>(props.result ?? null)
     const [loading, setLoading] = useState(false)
     const [keyword, setKeyword] = useState(props.keyword ?? null)
-    const [expandInput, setExpandInput] = useState(router.pathname === '/search')
+    const [expandInput, setExpandInput] = useState(router.pathname === '/avatar')
+
+    const updateKeywordQuery = useCallback((value?: string) => {
+        if (!value) {
+            delete router.query.keyword
+        } else {
+            router.query.keyword = value
+        }
+        router.push(
+            {
+                pathname: router.pathname,
+                query: router.query
+            },
+            undefined,
+            { shallow: true }
+        )
+    }, [router])
 
     const onInput = (event: any) => {
         if (!event.target.value) {
-            setKeyword('')
+            updateKeywordQuery()
+        } else {
+            onInputDebounce(event)
         }
-        onInputDebounce(event)
     }
 
     const onInputDebounce = debounce(720, (event) => {
-        if (router.isReady) {
-            if (!event.target.value) {
-                delete router.query.keyword
-            } else {
-                router.query.keyword = event.target.value
-            }
-            router.push(
-                {
-                    pathname: router.pathname,
-                    query: router.query
-                },
-                undefined,
-                { shallow: true }
-            )
-        }
+        updateKeywordQuery(event.target.value)
     })
-
 
     useEffect(() => {
         if (router.isReady) {
             if (router.pathname === '/') {
                 setExpandInput(false)
-            } else if (router.pathname === '/search') {
+            } else if (router.pathname === '/avatar') {
                 setExpandInput(true)
                 const queryKeyword = searchParams.get('keyword')
                 setKeyword(queryKeyword ?? '')
@@ -105,15 +107,7 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
     useEffect(() => {
         const onShortcut = (event: any) => {
             if (event.keyCode === 27) { // esc
-                delete router.query.keyword
-                router.push(
-                    {
-                        pathname: router.pathname,
-                        query: router.query
-                    },
-                    undefined,
-                    { shallow: true }
-                )
+                updateKeywordQuery()
                 if (inputRef.current !== null) {
                     if (document.activeElement === inputRef.current) {
                         if (!inputRef.current.value) {
@@ -140,22 +134,21 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
         return () => {
             window.removeEventListener('keydown', onShortcut)
         }
-    }, [props, router])
+    }, [props, router, updateKeywordQuery])
 
     return (
         <>
             <Head>
                 {keyword && <title>{`${keyword} - Avatar Search - Unlight Management`}</title>}
-                {!keyword && <title>Avatar Search - Unlight Management</title>}
             </Head>
             <div className="fixed rel w:max-content m:auto text-align:center pt:16">
                 <input
                     ref={inputRef}
                     className={`my:6 bg:gray-30 b:1|solid|gray outline:none p:5|12 ~width|300ms w:258@<xs w:360@<sm w:580 ${expandInput ? 'w:full!' : ''}`}
                     onInput={onInput}
-                    onFocus={() => { if (router.pathname !== '/search') router.push('/search') }}
-                    onBlur={() => { if (!inputRef?.current?.value) router.push('/') }}
-                    placeholder="Search player..."
+                    onFocus={() => { if (router.pathname !== '/avatar') router.push('/avatar') }}
+                    onBlur={() => { if (!inputRef?.current?.value) { router.push('/') } }}
+                    placeholder="Search..."
                     type="search" />
 
                 <div className={`fixed ${loading ? 'opacity:1!' : ''} left:0 mt:36 w:full h:full flex flex:col align-items:center pointer-events:none ~opacity|300ms|ease opacity:0`}>
