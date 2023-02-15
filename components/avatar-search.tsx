@@ -16,7 +16,6 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
     const previousKeyword = useRef<any>(props.keyword)
     const inputRef = useRef<HTMLInputElement>(null)
     const cancelSearch = useRef<Canceler | null>(null)
-    const previousResult = useRef<any>(null)
 
     const [result, setResult] = useState<Avatars[] | null>(props.result ?? null)
     const [loading, setLoading] = useState(false)
@@ -31,17 +30,15 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
         }
         router.push(
             {
-                pathname: router.pathname,
+                pathname: '/avatar',
                 query: router.query
-            },
-            undefined,
-            { shallow: true }
+            }
         )
     }, [router])
 
     const onInput = (event: any) => {
         if (!event.target.value) {
-            updateKeywordQuery()
+            setKeyword('')
         } else {
             onInputDebounce(event)
         }
@@ -54,16 +51,20 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
     useEffect(() => {
         if (router.isReady) {
             if (router.pathname === '/') {
+                setKeyword('')
+                if (inputRef.current) {
+                    inputRef.current.value = ''
+                }
                 setExpandInput(false)
             } else if (router.pathname === '/avatar') {
                 setExpandInput(true)
                 const queryKeyword = searchParams.get('keyword')
-                setKeyword(queryKeyword ?? '')
                 if (inputRef.current !== null) {
                     if (queryKeyword) {
                         inputRef.current.focus()
                     }
                     inputRef.current.value = queryKeyword ?? ''
+                    setKeyword(queryKeyword ?? '')
                 }
             }
         }
@@ -93,10 +94,8 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
                             })
                         }
                     )
-                    if (res.data.length !== previousResult.current?.length || res.data.find((el: any, index: number) => el !== previousResult.current?.[index])) {
-                        setResult(res.data)
-                        previousResult.current = res.data
-                    }
+                    
+                    setResult(res.data)
                     setLoading(false)
                 } catch (_) { }
             }
@@ -107,7 +106,6 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
     useEffect(() => {
         const onShortcut = (event: any) => {
             if (event.keyCode === 27) { // esc
-                updateKeywordQuery()
                 if (inputRef.current !== null) {
                     if (document.activeElement === inputRef.current) {
                         if (!inputRef.current.value) {
@@ -139,14 +137,14 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
     return (
         <>
             <Head>
-                {keyword && <title>{`${keyword} - Avatar Search - Unlight Management`}</title>}
+                {router?.query?.keyword && <title>{`${router.query.keyword} - Avatar Search - Unlight Management`}</title>}
             </Head>
             <div className="fixed rel w:max-content m:auto text-align:center pt:16">
                 <input
                     ref={inputRef}
                     className={`my:6 bg:gray-30 b:1|solid|gray outline:none p:5|12 ~width|300ms w:258@<xs w:360@<sm w:580 ${expandInput ? 'w:full!' : ''}`}
                     onInput={onInput}
-                    onFocus={() => { if (router.pathname !== '/avatar') router.push('/avatar') }}
+                    onClick={() => { if (router.pathname !== '/avatar') router.push('/avatar') }}
                     onBlur={() => { if (!inputRef?.current?.value) { router.push('/') } }}
                     placeholder="Search..."
                     type="search" />
