@@ -32,7 +32,9 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
             {
                 pathname: '/avatar',
                 query: router.query
-            }
+            },
+            undefined,
+            { shallow: true }
         )
     }, [router])
 
@@ -144,8 +146,9 @@ export default function AvatarSearch(props: { keyword?: string, result?: Avatars
                     ref={inputRef}
                     className={`my:6 bg:gray-30 b:1|solid|gray outline:none p:5|12 ~width|300ms w:258@<xs w:360@<sm w:580 ${expandInput ? 'w:full!' : ''}`}
                     onInput={onInput}
-                    onClick={() => { if (router.pathname !== '/avatar') router.push('/avatar') }}
-                    onBlur={() => { if (!inputRef?.current?.value) { router.push('/') } }}
+                    onClick={() => {
+                        if (router.pathname !== '/avatar') router.push('/avatar', undefined, { shallow: true }) }}
+                    onBlur={() => { if (!inputRef?.current?.value) { router.push('/', undefined, { shallow: true }) } }}
                     placeholder="Search..."
                     type="search" />
 
