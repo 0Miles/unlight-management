@@ -8,6 +8,10 @@ export default async function handler(
     res: NextApiResponse
 ) {
     const { name } = req.query
+    res.status(200).json(await findAvatarsByName(name as string))
+}
+
+export async function findAvatarsByName(keyword: string) {
     const appDataSource = await getAppDataSource()
     const avatars = await appDataSource.manager
         .find(Avatars, {
@@ -17,7 +21,7 @@ export default async function handler(
                 },
             },
             where: {
-                name: Like(`%${(name as string).replace('%', '\\%').replace('_', '\\_')}%`),
+                name: Like(`%${keyword.replace('%', '\\%').replace('_', '\\_')}%`),
                 partInventories: {
                     used: 1
                 }
@@ -37,5 +41,5 @@ export default async function handler(
                 }
             }
         })
-    res.status(200).json(avatars)
+    return avatars
 }
