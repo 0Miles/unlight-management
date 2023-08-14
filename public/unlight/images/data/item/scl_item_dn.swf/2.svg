@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" height="15.95px" width="15.95px" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+    <pattern height="16" id="PatternID_1" overflow="visible" patternTransform="matrix(0.9969, 0.0, 0.0, 0.9969, 0.0, 0.0)" patternUnits="userSpaceOnUse" viewBox="0 0 16 16" width="16">
+      <image height="16" width="16" xlink:href="data:image/PNG;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAA/ElEQVR42o2SMQqDQBBFc6a0uYBgYyBYWRnBKoWVndiJWmhhKYiCooKiYKGeQEgOlU82WVdJosOy7g7z+DPfPVyutxN33rlQfGCB44/4B7Rte39FHMeWZZmmuQEgdF2Posh1XUmSthXyPKcKtm2rqvodYDuGQlmWvu8rirKa5A3gUlUVyQqCkKYpFMIwxEEURZIvigL7DKBiHMe6rrFP04RrEARN09AkMgsAI5LWH5+ARVmW4YDkMAzgZ4CO2/c9x3GElGUZnvI833VdkiSLGVhPgZEGABiG4Xke6+zaVioFRtM0x3FYT78DlFn9438AbW/78e16reSzc6H4CULqJVafW/6nAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <path d="M0.0 0.0 L15.95 0.0 15.95 15.95 0.0 15.95 0.0 0.0" style="fill:url(#PatternID_1)"/>
+  </g>
+</svg>

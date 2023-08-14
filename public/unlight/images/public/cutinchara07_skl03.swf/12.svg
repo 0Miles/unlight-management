@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" height="1024.85px" width="1359.55px" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1.0, 0.0, 0.0, 1.0, 335.85, 0.45)">
+    <path d="M1023.2 1023.9 L-335.35 1023.9 -335.35 0.05 1023.2 0.05 1023.2 1023.9" fill="url(#gradient0)" fill-rule="evenodd" stroke="none"/>
+    <path d="M1023.2 1023.9 L-335.35 1023.9 -335.35 0.05 1023.2 0.05 1023.2 1023.9 Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.0"/>
+  </g>
+  <defs>
+    <linearGradient gradientTransform="matrix(-0.8293, 0.0, 0.0, -0.4687, 343.85, 480.7)" gradientUnits="userSpaceOnUse" id="gradient0" spreadMethod="pad" x1="-819.2" x2="819.2">
+      <stop offset="0.0" stop-color="#9c1b1b"/>
+      <stop offset="1.0" stop-color="#000000"/>
+    </linearGradient>
+  </defs>
+</svg>

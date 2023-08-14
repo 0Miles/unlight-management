@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" height="42.0px" width="80.0px" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+    <pattern height="42" id="PatternID_1" overflow="visible" patternTransform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)" patternUnits="userSpaceOnUse" viewBox="0 0 80 42" width="80">
+      <image height="42" width="80" xlink:href="data:image/PNG;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAqCAYAAAAkqNwKAAADFElEQVR42u2azWrUUBTHp1iMiljFj86mgmQhCl1EsJtioK5m4wcYKYi6moUrNwZEfAPfwSfwIVy678oncOtekGt+4Ry5hJuZzCQW7+QcOAxpOzOZ3/zP/5x7bycTCwsLC4t14ooh6AYprTKvsqiyPLu9/fnapZ2Ti+fOf62uE0PUHlNA3U9v/zraz9yTg0P3+uHMvZk9dh+Kl+7m9d3vBnAJwLt7t35+fP7KkUB7/+xFne+eHrvdncvfDNHiSFAZ4ADm59tHhbuQJF8M0ZJAZao4Ta4p4zNbW59iqiY8W770OdenBrCpPhR5/ODIyY1EEXzZ3DOVg5djTdIEyyqzf+blIYD44eGd/d/yxtF4ufo3AlBbAiqfhWYpFVUMOp6FAHITe1dv/IilAwOG6aFpRfpZEITa0uzeQf3ZhrKnuolE3kBS1BdqhKFUmFLe/Ydolb7/BnhILP6n6usKUAXCYmGI98/wB6AFyjeGZVzKIiBUum2ppTwUwDkmqzfgqa+MQX1AAMYqAAdVID7Hi+nows1EtP7NVlWfn0OssqZqviQgpXTTGNTHl7+O+lQsfPa+w3aJ+VK2PDInRTT31erzvXuR54UAilUVa6sPtQGOG5GZKJq9v67qo0G2/R0V12eUKbxlTjqJK/Lm5NCmPFSGQEIjDs9nqI5puTpI8MVr4+vidcBmrzMEHMgAjmXqGER9wOg6NOumCNC1Yzefq34oXbmcbPIxhqqva+dtNIucZSvX+hqaXKNUmQ03FmCBZy1Sn8LQEueaRinKSgTOnCaE4gDKo4DLN37jd5H38Ts6LukP2H277UapL9QIdAGAigCF4vBJbRze3mY+VngJQ74/FPuPjaOHhPIEtp40Ng7IpmMEmKuagKULAO2oLUcPBSBRJPBRIEDF60Z3TFvvGAEQkDQEXcPzM5njQouBxEv9x4F0jAr8C1AP+ilH3QCRnXM7/F8GEB/TYwYAAlR2VDJDtMQDaQr4n64UACflPDc8HbowpesBLGXf0uCtUsbetttom0GvAF5k/2ryf5azIbCwsLA43fgDwVZWqOyNMsIAAAAASUVORK5CYII="/>
+    </pattern>
+    <path d="M80.0 42.0 L0.0 42.0 0.0 0.0 80.0 0.0 80.0 42.0" style="fill:url(#PatternID_1)"/>
+  </g>
+</svg>
